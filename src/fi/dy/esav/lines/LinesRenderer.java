@@ -1,16 +1,44 @@
 package fi.dy.esav.lines;
 
 import android.content.Context;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class LinesRenderer extends SurfaceView {
+public class LinesRenderer extends SurfaceView implements Runnable {
 
-	/**
-	 * @param context
-	 */
+	Thread renderThread = null;
+	SurfaceHolder holder;
+	volatile boolean running;
+	
 	public LinesRenderer(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
+		holder = this.getHolder();
 	}
+	
+	public void onResume() {
+		running = true;
+		renderThread = new Thread(this);
+		renderThread.start();
+	}
+	
+	public void onPause() {
+		running = false;
+		while(true) {
+			try {
+				renderThread.join();
+				return;
+			} catch(InterruptedException e) {
+				// retry
+			}
+		}
+	}
+	
+	public void run() {
+		while(running) {
+			
+		}
+	}
+
+
 
 }
