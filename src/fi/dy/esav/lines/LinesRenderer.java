@@ -1,6 +1,7 @@
 package fi.dy.esav.lines;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -35,7 +36,13 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 	
 	public void run() {
 		while(running) {
+			if(!holder.getSurface().isValid()) {
+				continue;
+			}
 			
+			Canvas canvas = holder.lockCanvas();
+			// Do the drawing
+			holder.unlockCanvasAndPost(canvas);
 		}
 	}
 
