@@ -11,7 +11,7 @@ public class LinesActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         renderer = new LinesRenderer(this);
-        setContentView(R.layout.main);
+        setContentView(renderer);
     }
     
     @Override
