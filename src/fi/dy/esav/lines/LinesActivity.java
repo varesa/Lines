@@ -4,10 +4,25 @@ import android.app.Activity;
 import android.os.Bundle;
 
 public class LinesActivity extends Activity {
-    /** Called when the activity is first created. */
+	
+	LinesRenderer renderer;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        renderer = new LinesRenderer(this);
         setContentView(R.layout.main);
+    }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	renderer.resume();
+    }
+    
+    @Override
+    public void onPause() {
+    	super.onPause();
+    	renderer.pause();
     }
 }
