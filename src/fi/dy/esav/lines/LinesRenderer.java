@@ -15,13 +15,13 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 		holder = this.getHolder();
 	}
 	
-	public void onResume() {
+	public void resume() {
 		running = true;
 		renderThread = new Thread(this);
 		renderThread.start();
 	}
 	
-	public void onPause() {
+	public void pause() {
 		running = false;
 		while(true) {
 			try {
