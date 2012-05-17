@@ -42,6 +42,8 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 			
 			Canvas canvas = holder.lockCanvas();
 			// Do the drawing
+			canvas.drawRGB(255,0, 0);
+			
 			holder.unlockCanvasAndPost(canvas);
 		}
 	}
