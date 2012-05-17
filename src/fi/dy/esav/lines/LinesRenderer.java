@@ -47,7 +47,7 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 		
 		double line1_len = halfscreen_len / 3 * 2;
 		double line1_ang = 15;
-		double line1_inc = 0.1;
+		double line1_inc = 0.01;
 		float line1_pts[] = {center.x, center.y, (float) (center.x + line1_len * Math.cos(line1_ang)), (float) (center.y + line1_len * Math.sin(line1_ang))};
 		
 		Paint paint = new Paint();
