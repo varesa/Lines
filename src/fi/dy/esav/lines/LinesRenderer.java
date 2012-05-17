@@ -49,7 +49,7 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 		
 		Line line1 = new Line(center, freeSpace / 2, 0, 0.01);
 		freeSpace = freeSpace / 2;
-		Line line2 = new Line(line1.end, freeSpace / 2, 0, 0.02);
+		Line line2 = new Line(line1.end, freeSpace / 2, 0, 0.05);
 		//freeSpace = freeSpace / 2;
 		
 		Paint paint = new Paint();
