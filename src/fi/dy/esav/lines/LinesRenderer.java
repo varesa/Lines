@@ -38,12 +38,9 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 		}
 	}
 	
-	public void run() {
-		
-		long startTime = System.currentTimeMillis();
-		long endTime;
-		long dt;
-		
+	public void run() {		
+		long startTime;
+
 		Point center = new Point(this.getWidth()/2, this.getHeight()/2);
 		
 		double halfscreen_len = Math.min(this.getWidth(), this.getHeight())/2;
@@ -57,35 +54,34 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 		paint.setColor(Color.BLUE);
 
 		while(running) {
-			if(!holder.getSurface().isValid()) {
-				continue;
-			}
+			startTime = System.currentTimeMillis();
 			
+			if(!holder.getSurface().isValid()) continue;
 			Canvas canvas = holder.lockCanvas();
 			
 			canvas.drawLines(line1_pts, paint);
 			
-			endTime = System.currentTimeMillis();
-		    dt = endTime - startTime;
-		    
 		    line1_ang += line1_inc;
 		    line1_pts[2] = (float) (center.x + line1_len * Math.cos(line1_ang));
 		    line1_pts[3] = (float) (center.y + line1_len * Math.sin(line1_ang));
 		    
-		    if (dt < 20) {
-				try {
-					Thread.sleep(20 - dt);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		    }
-		    startTime = System.currentTimeMillis();
-			
 			holder.unlockCanvasAndPost(canvas);
+			delay(startTime);
 		}
 	}
-
-
-
+	
+	private static void delay(long start) {
+		long end = System.currentTimeMillis();
+	    long dt = end - start;
+	    if (dt < 20) {
+	    	while(true) {
+				try {
+					Thread.sleep(20 - dt);
+					return;
+				} catch (InterruptedException e) {
+					
+				}
+	    	}
+	    }
+	}
 }
