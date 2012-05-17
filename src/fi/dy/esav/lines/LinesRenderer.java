@@ -59,6 +59,7 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 			if(!holder.getSurface().isValid()) continue;
 			Canvas canvas = holder.lockCanvas();
 			
+			canvas.drawRGB(255, 255, 255);
 			canvas.drawLines(line1_pts, paint);
 			
 		    line1_ang += line1_inc;
