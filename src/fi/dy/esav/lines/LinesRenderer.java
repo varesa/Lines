@@ -42,13 +42,14 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 		long startTime;
 
 		Point center = new Point(this.getWidth()/2, this.getHeight()/2);
+		float freeSpace = Math.min(this.getWidth(), this.getHeight())/2;
 		
-		double halfscreen_len = Math.min(this.getWidth(), this.getHeight())/2;
+		Line line1 = new Line(center, freeSpace / 3 * 2, 0, 0.01);
 		
-		double line1_len = halfscreen_len / 3 * 2;
+		/*double line1_len = halfscreen_len / 3 * 2;
 		double line1_ang = 15;
 		double line1_inc = 0.01;
-		float line1_pts[] = {center.x, center.y, (float) (center.x + line1_len * Math.cos(line1_ang)), (float) (center.y + line1_len * Math.sin(line1_ang))};
+		float line1_pts[] = {center.x, center.y, (float) (center.x + line1_len * Math.cos(line1_ang)), (float) (center.y + line1_len * Math.sin(line1_ang))};*/
 		
 		Paint paint = new Paint();
 		paint.setColor(Color.BLUE);
@@ -60,11 +61,12 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 			Canvas canvas = holder.lockCanvas();
 			
 			canvas.drawRGB(255, 255, 255);
-			canvas.drawLines(line1_pts, paint);
+			canvas.drawLines(line1.getPoints(), paint);
 			
-		    line1_ang += line1_inc;
+		    /*line1_ang += line1_inc;
 		    line1_pts[2] = (float) (center.x + line1_len * Math.cos(line1_ang));
-		    line1_pts[3] = (float) (center.y + line1_len * Math.sin(line1_ang));
+		    line1_pts[3] = (float) (center.y + line1_len * Math.sin(line1_ang));*/
+			line1.incrementAngle();
 		    
 			holder.unlockCanvasAndPost(canvas);
 			delay(startTime);
