@@ -4,9 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.PointF;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -50,11 +48,6 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 		Line line2 = new Line(line1.end, freeSpace / 2, 0, 0.02);
 		//freeSpace = freeSpace / 2;
 		
-		/*double line1_len = halfscreen_len / 3 * 2;
-		double line1_ang = 15;
-		double line1_inc = 0.01;
-		float line1_pts[] = {center.x, center.y, (float) (center.x + line1_len * Math.cos(line1_ang)), (float) (center.y + line1_len * Math.sin(line1_ang))};*/
-		
 		Paint paint = new Paint();
 		paint.setColor(Color.BLUE);
 
@@ -68,9 +61,6 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 			canvas.drawLines(line1.getPoints(), paint);
 			canvas.drawLines(line2.getPoints(), paint);
 			
-		    /*line1_ang += line1_inc;
-		    line1_pts[2] = (float) (center.x + line1_len * Math.cos(line1_ang));
-		    line1_pts[3] = (float) (center.y + line1_len * Math.sin(line1_ang));*/
 			line1.incrementAngle();
 			line2.incrementAngle();
 		    
