@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.util.Config;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -40,7 +41,8 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 	}
 	
 	public void run() {
-		if(getWidth() == 0 || getHeight() == 0) return;
+		Log.d("Lines", "Started");
+		while(getWidth() == 0 || getHeight() == 0) {} // Wait for the activity to initialize
 		
 		long startTime;
 
@@ -59,6 +61,7 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 		legend.eraseColor(Color.WHITE);
 
 		while(running) {
+			Log.d("Lines", "In the loop");
 			startTime = System.currentTimeMillis();
 			
 			if(!holder.getSurface().isValid()) continue;
@@ -76,6 +79,7 @@ public class LinesRenderer extends SurfaceView implements Runnable {
 		    
 			holder.unlockCanvasAndPost(canvas);
 			delay(startTime);
+			Log.d("Lines", "Drawn");
 		}
 	}
 	
